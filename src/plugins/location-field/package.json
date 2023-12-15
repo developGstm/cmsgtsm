@@ -1,0 +1,36 @@
+{
+  "name": "strapi-location-field-plugin",
+  "version": "1.2.2",
+  "description": "A plugin to add a location field to Strapi",
+  "strapi": {
+    "name": "location-field",
+    "description": "A plugin to add a location field to Strapi",
+    "kind": "plugin",
+    "displayName": "Location Field"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raykeating/strapi-location-field-plugin.git"
+  },
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.15.1"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": "^4.0.0"
+  },
+  "author": {
+    "name": "Ray Keating",
+    "email": "raykeating13@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "Ray Keating"
+    }
+  ],
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raykeating/strapi-location-field-plugin#readme"
+}

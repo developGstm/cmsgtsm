@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_preguntas_frecuentes_preguntas",
+  "info": {
+    "displayName": "pregunta",
+    "icon": "phone"
+  },
+  "options": {},
+  "attributes": {
+    "pregunta": {
+      "type": "string",
+      "required": true
+    },
+    "respuesta": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

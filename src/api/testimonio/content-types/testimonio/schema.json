@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "testimonios",
+  "info": {
+    "singularName": "testimonio",
+    "pluralName": "testimonios",
+    "displayName": "testimonio"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "testimonio": {
+      "type": "text"
+    },
+    "autor": {
+      "type": "string"
+    }
+  }
+}

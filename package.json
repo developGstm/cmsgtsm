@@ -1,0 +1,32 @@
+{
+  "name": "cms",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.2",
+    "@strapi/plugin-graphql": "^4.13.3",
+    "@strapi/plugin-i18n": "4.13.1",
+    "@strapi/plugin-users-permissions": "4.13.1",
+    "@strapi/strapi": "4.13.1",
+    "better-sqlite3": "^8.5.0",
+    "sharp": "^0.32.5"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "47568e9b-e97f-44f3-ba94-252e7c7a3b16"
+  },
+  "engines": {
+    "node": ">=16.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

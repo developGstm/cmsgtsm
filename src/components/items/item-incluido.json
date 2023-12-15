@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_items_item_incluidos",
+  "info": {
+    "displayName": "item",
+    "icon": "stack",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "required": true
+    },
+    "descripcion": {
+      "type": "text"
+    }
+  }
+}
