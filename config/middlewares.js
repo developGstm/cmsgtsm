@@ -8,14 +8,7 @@ module.exports = [
       },
     },
   },
-  {
-    name: 'strapi::cors',
-    config: {
-      enabled: true,
-      header: '*',
-      origin: ['https://cms.trotatourism.com','http://localhost:1337','http://localhost','http://localhost:3000','https://site.trotatourism.com','https://trotatourism.com']
-    }
-  },
+  'strapi::cors',
   'strapi::poweredBy',
   'strapi::logger',
   'strapi::query',
