@@ -12,10 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "locacion": {
-      "type": "customField",
-      "customField": "plugin::location-field.location"
-    },
     "titulo": {
       "type": "string",
       "required": true
@@ -23,6 +19,10 @@
     "descripcion": {
       "type": "text",
       "required": true
+    },
+    "locacion": {
+      "type": "customField",
+      "customField": "plugin::location-field.location"
     },
     "fecha_de_incio": {
       "type": "date",
