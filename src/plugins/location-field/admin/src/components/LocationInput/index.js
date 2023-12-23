@@ -10,6 +10,7 @@ import { ComboboxOption } from "@strapi/design-system";
 import { request  } from '@strapi/helper-plugin'
 import { Loader } from "@googlemaps/js-api-loader";
 import { find } from '../../../../../../../config/middlewares';
+import axios from 'axios';
 
 
 export default function Index({
@@ -151,15 +152,17 @@ export default function Index({
 								estado = types.find(type => type === 'administrative_area_level_1') ? address.long_name : '';
 							}
 						})
+						
 						// if "photo" is in the fields array, call "getUrl()" for each photo in the response
 						if (fields.includes("photo") && place?.photos) {
 							place.photos.forEach((photo) => {
+								const url = photo.getUrl();
 								photo.url = photo.getUrl();
+								axios.get(url).then(res => {
+									photo.url = res.request.responseURL;
+								})
 							});
 						}
-
-						selectedPrediction.details = place;
-
 						targetValue = JSON.stringify({
 							description: selectedPrediction.description,
 							place_id: selectedPrediction.place_id,
