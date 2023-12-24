@@ -158,9 +158,6 @@ export default function Index({
 							place.photos.forEach((photo) => {
 								const url = photo.getUrl();
 								photo.url = photo.getUrl();
-								axios.get(url).then(res => {
-									photo.url = res.request.responseURL;
-								})
 							});
 						}
 						targetValue = JSON.stringify({
