@@ -119,6 +119,7 @@ export default function Index({
     }
 		
 		let targetValue = null; // the value that will be sent to the server and saved in the database
+		let imagenes = null;
 		let selectedPrediction = predictions.find(
 			(prediction) => prediction.place_id === val
 		);
@@ -152,19 +153,12 @@ export default function Index({
 								estado = types.find(type => type === 'administrative_area_level_1') ? address.long_name : '';
 							}
 						})
-						
-						// if "photo" is in the fields array, call "getUrl()" for each photo in the response
-						if (fields.includes("photo") && place?.photos) {
-							place.photos.forEach((photo) => {
-								const url = photo.getUrl();
-								photo.url = photo.getUrl();
-							});
-						}
-						targetValue = JSON.stringify({
+					
+						selectedPrediction.details = place;
+
+						targetValue = {
 							description: selectedPrediction.description,
 							place_id: selectedPrediction.place_id,
-							lat: selectedPrediction.details.geometry.location.lat(),
-							lng: selectedPrediction.details.geometry.location.lng(),
 							details: selectedPrediction.details,
 							country: country,
 							locality: locality,
@@ -179,14 +173,33 @@ export default function Index({
 									publishedAt: "2023-09-06T18:53:49.583Z"
 								},
 							},
-						});
-						onChange({
-							target: {
-								name,
-								value: targetValue,
-								type: attribute.type,
-							},
-						});
+						};
+												// if "photo" is in the fields array, call "getUrl()" for each photo in the response
+						if (fields.includes("photo") && place?.photos) {
+							Promise.all(place.photos.map(item => {
+								const url = item.getUrl();
+								return axios.get(url).then(res => {
+									return {url: res.request.responseURL}
+								})
+							})).then(resultArray => {
+								targetValue.details.photos = resultArray
+								onChange({
+									target: {
+										name,
+										value: JSON.stringify(targetValue),
+										type: attribute.type,
+									},
+								});
+							})
+						} else {
+							onChange({
+								target: {
+									name,
+									value: targetValue,
+									type: attribute.type,
+								},
+							});
+						}
 					}
 				);
 			});
