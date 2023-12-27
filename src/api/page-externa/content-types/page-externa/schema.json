@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "page_externas",
+  "info": {
+    "singularName": "page-externa",
+    "pluralName": "page-externas",
+    "displayName": "page externa"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "text"
+    }
+  }
+}
