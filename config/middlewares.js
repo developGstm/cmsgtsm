@@ -4,7 +4,19 @@ module.exports = [
     name: "strapi::security",
     config: {
       contentSecurityPolicy: {
-        directives: { "script-src": ["'self'", "'unsafe-inline'", "maps.googleapis.com"] },
+        useDefaults: true,
+        directives: { 
+          "connect-src": ["'self'", "https:"],
+          "img-src": [
+            "'self'",
+            "data:",
+            "blob:",
+            "*.digitaloceanspaces.com"
+          ],
+          "media-src": ["'self'", "data:", "blob:"],
+          upgradeInsecureRequests: null,
+          "script-src": ["'self'", "'unsafe-inline'", "maps.googleapis.com"] 
+        },
       },
     },
   },
