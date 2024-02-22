@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "traslate_copy_magics",
+  "info": {
+    "singularName": "traslate-copy-magic",
+    "pluralName": "traslate-copy-magics",
+    "displayName": "Traslate_copy_magic",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "nombre": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
+    "descripcion": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    }
+  }
+}
