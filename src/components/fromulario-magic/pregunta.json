@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_fromulario_magic_preguntas",
+  "info": {
+    "displayName": "pregunta",
+    "icon": "question"
+  },
+  "options": {},
+  "attributes": {
+    "Pregunta": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_paquetes_magic_paquetes",
+  "info": {
+    "displayName": "Slider",
+    "icon": "cube",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Titulo": {
+      "type": "string",
+      "required": true
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
