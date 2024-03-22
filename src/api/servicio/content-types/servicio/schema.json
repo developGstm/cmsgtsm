@@ -96,14 +96,15 @@
       "repeatable": true,
       "component": "items.item-incluido"
     },
-    "Tipo_servicio": {
+    "Tipo_Servicio": {
       "type": "dynamiczone",
       "components": [
         "tipos-servicios.hotel",
         "tipos-servicios.tour",
         "tipos-servicios.transporte"
       ],
-      "required": true
+      "required": true,
+      "max": 1
     }
   }
 }
