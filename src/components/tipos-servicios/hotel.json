@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_tipos_servicios_hotels",
+  "info": {
+    "displayName": "Hotel",
+    "icon": "house"
+  },
+  "options": {},
+  "attributes": {
+    "Tarifas": {
+      "type": "component",
+      "repeatable": true,
+      "component": "tarifa.tarifas"
+    }
+  }
+}

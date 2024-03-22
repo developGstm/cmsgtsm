@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_tipos_servicios_transportes",
+  "info": {
+    "displayName": "transporte",
+    "icon": "car"
+  },
+  "options": {},
+  "attributes": {
+    "duracion": {
+      "type": "string"
+    },
+    "precio": {
+      "type": "float"
+    }
+  }
+}

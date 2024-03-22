@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_tipos_servicios_tours",
+  "info": {
+    "displayName": "Tour",
+    "icon": "sun",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "duracion": {
+      "type": "string"
+    },
+    "precio": {
+      "type": "float"
+    }
+  }
+}

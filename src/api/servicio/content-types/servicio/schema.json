@@ -81,11 +81,6 @@
       "target": "api::monda.monda",
       "inversedBy": "servicios"
     },
-    "Tarifas": {
-      "type": "component",
-      "repeatable": true,
-      "component": "tarifa.tarifas"
-    },
     "preguntas_frecuentes": {
       "type": "component",
       "repeatable": true,
@@ -100,6 +95,15 @@
       "type": "component",
       "repeatable": true,
       "component": "items.item-incluido"
+    },
+    "Tipo_servicio": {
+      "type": "dynamiczone",
+      "components": [
+        "tipos-servicios.hotel",
+        "tipos-servicios.tour",
+        "tipos-servicios.transporte"
+      ],
+      "required": true
     }
   }
 }
