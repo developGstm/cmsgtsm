@@ -1,8 +1,9 @@
 {
   "collectionName": "components_tipos_servicios_transportes",
   "info": {
-    "displayName": "transporte",
-    "icon": "car"
+    "displayName": "Transporte",
+    "icon": "car",
+    "description": ""
   },
   "options": {},
   "attributes": {

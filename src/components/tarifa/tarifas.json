@@ -2,18 +2,33 @@
   "collectionName": "components_tarifa_tarifas",
   "info": {
     "displayName": "Tarifas",
-    "icon": "bulletList"
+    "icon": "bulletList",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "Titulo": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "Descripcion": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "Precio": {
-      "type": "float"
+      "type": "float",
+      "required": true
+    },
+    "Imagen": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }
