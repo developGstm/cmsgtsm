@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_tarifa_tarifas",
+  "info": {
+    "displayName": "Tarifas",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "Titulo": {
+      "type": "string"
+    },
+    "Descripcion": {
+      "type": "text"
+    },
+    "Precio": {
+      "type": "float"
+    }
+  }
+}

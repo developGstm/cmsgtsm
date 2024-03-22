@@ -71,25 +71,6 @@
       "type": "string",
       "required": true
     },
-    "incluido": {
-      "type": "dynamiczone",
-      "components": [
-        "items.item-incluido"
-      ]
-    },
-    "no_incluido": {
-      "type": "dynamiczone",
-      "components": [
-        "items.item-incluido"
-      ],
-      "required": false
-    },
-    "preguntas_frecuentes": {
-      "type": "dynamiczone",
-      "components": [
-        "preguntas-frecuentes.pregunta"
-      ]
-    },
     "duracion": {
       "type": "string",
       "required": true
@@ -99,6 +80,26 @@
       "relation": "manyToOne",
       "target": "api::monda.monda",
       "inversedBy": "servicios"
+    },
+    "Tarifas": {
+      "type": "component",
+      "repeatable": true,
+      "component": "tarifa.tarifas"
+    },
+    "preguntas_frecuentes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "preguntas-frecuentes.pregunta"
+    },
+    "incluido": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.item-incluido"
+    },
+    "no_incluido": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.item-incluido"
     }
   }
 }
