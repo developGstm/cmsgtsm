@@ -13,22 +13,22 @@
     },
     "Descripcion": {
       "type": "text",
-      "required": true
+      "required": false
     },
     "Precio": {
       "type": "float",
       "required": true
     },
     "Imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     }
   }
 }

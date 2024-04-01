@@ -70,16 +70,6 @@
         }
       },
       "component": "slider-magic.paquete"
-    },
-    "preguntas": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "fromulario-magic.pregunta"
     }
   }
 }

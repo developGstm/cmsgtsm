@@ -1,9 +1,8 @@
 {
-  "collectionName": "components_tipos_servicios_transportes",
+  "collectionName": "components_tipos_servicios_eventos",
   "info": {
-    "displayName": "Transporte",
-    "icon": "car",
-    "description": ""
+    "displayName": "Evento",
+    "icon": "microphone"
   },
   "options": {},
   "attributes": {

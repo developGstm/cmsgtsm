@@ -1,9 +1,8 @@
 {
-  "collectionName": "components_tipos_servicios_transportes",
+  "collectionName": "components_tipos_servicios_viajes",
   "info": {
-    "displayName": "Transporte",
-    "icon": "car",
-    "description": ""
+    "displayName": "Viaje",
+    "icon": "plane"
   },
   "options": {},
   "attributes": {

@@ -21,6 +21,12 @@
       "relation": "oneToMany",
       "target": "api::servicio.servicio",
       "mappedBy": "unidad"
+    },
+    "servicios_destinies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::servicios-destiny.servicios-destiny",
+      "mappedBy": "unidad"
     }
   }
 }

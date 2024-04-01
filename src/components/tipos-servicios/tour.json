@@ -7,11 +7,10 @@
   },
   "options": {},
   "attributes": {
-    "duracion": {
-      "type": "string"
-    },
-    "precio": {
-      "type": "float"
+    "Tarifas": {
+      "type": "component",
+      "repeatable": true,
+      "component": "tarifa.tarifas"
     }
   }
 }

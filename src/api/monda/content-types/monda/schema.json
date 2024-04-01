@@ -20,6 +20,12 @@
       "relation": "oneToMany",
       "target": "api::servicio.servicio",
       "mappedBy": "moneda"
+    },
+    "servicios_destinies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::servicios-destiny.servicios-destiny",
+      "mappedBy": "moneda"
     }
   }
 }

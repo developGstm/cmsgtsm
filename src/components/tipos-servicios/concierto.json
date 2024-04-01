@@ -1,9 +1,8 @@
 {
-  "collectionName": "components_tipos_servicios_transportes",
+  "collectionName": "components_tipos_servicios_conciertos",
   "info": {
-    "displayName": "Transporte",
-    "icon": "car",
-    "description": ""
+    "displayName": "Concierto",
+    "icon": "music"
   },
   "options": {},
   "attributes": {
