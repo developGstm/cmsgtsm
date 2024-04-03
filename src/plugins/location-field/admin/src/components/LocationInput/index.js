@@ -117,13 +117,13 @@ export default function Index({
       });
       return;
     }
-		
+
 		let targetValue = null; // the value that will be sent to the server and saved in the database
 		let imagenes = null;
 		let selectedPrediction = predictions.find(
 			(prediction) => prediction.place_id === val
 		);
-    
+
 		if (selectedPrediction && selectedPrediction.place_id) {
 			let country = '';
 			let locality = '';
@@ -153,7 +153,7 @@ export default function Index({
 								estado = types.find(type => type === 'administrative_area_level_1') ? address.long_name : '';
 							}
 						})
-					
+
 						selectedPrediction.details = place;
 
 						targetValue = {
@@ -176,29 +176,21 @@ export default function Index({
 						};
 												// if "photo" is in the fields array, call "getUrl()" for each photo in the response
 						if (fields.includes("photo") && place?.photos) {
-							Promise.all(place.photos.map(item => {
-								const url = item.getUrl();
-								return axios.get(url).then(res => {
-									return {url: res.request.responseURL}
-								})
-							})).then(resultArray => {
-								targetValue.details.photos = resultArray
-								onChange({
-									target: {
-										name,
-										value: JSON.stringify(targetValue),
-										type: attribute.type,
-									},
-								});
-							})
+              onChange({
+                target: {
+                  name,
+                  value: JSON.stringify(targetValue),
+                  type: attribute.type,
+                },
+              });
 						} else {
-							onChange({
-								target: {
-									name,
-									value: targetValue,
-									type: attribute.type,
-								},
-							});
+              onChange({
+                target: {
+                  name,
+                  value: JSON.stringify(targetValue),
+                  type: attribute.type,
+                },
+              });
 						}
 					}
 				);
@@ -237,7 +229,7 @@ export default function Index({
 						}}
 						onInputChange={(e) => handleInputChange(e)}
 						value={
-							(value && value !== "null") 
+							(value && value !== "null")
 								? JSON.parse(value).place_id
 								: ""
 						}

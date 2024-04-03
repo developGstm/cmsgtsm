@@ -94,6 +94,15 @@
         }
       },
       "component": "items.item-incluido"
+    },
+    "url": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid",
+      "targetField": "titulo"
     }
   }
 }
