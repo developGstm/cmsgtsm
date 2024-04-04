@@ -2,14 +2,15 @@
   "collectionName": "components_tipos_servicios_eventos",
   "info": {
     "displayName": "Evento",
-    "icon": "microphone"
+    "icon": "microphone",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "Tarifas": {
       "type": "component",
       "repeatable": true,
-      "component": "tarifa.tarifas"
+      "component": "tarifa.tarifa-evento-tour"
     }
   }
 }

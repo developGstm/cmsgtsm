@@ -103,6 +103,20 @@
       },
       "type": "uid",
       "targetField": "titulo"
+    },
+    "categoria": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "intrepido",
+        "cultural",
+        "relajado",
+        "gastronomico"
+      ]
     }
   }
 }

@@ -2,14 +2,15 @@
   "collectionName": "components_tipos_servicios_conciertos",
   "info": {
     "displayName": "Concierto",
-    "icon": "music"
+    "icon": "music",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "Tarifas": {
       "type": "component",
       "repeatable": true,
-      "component": "tarifa.tarifas"
+      "component": "tarifa.tarifa-evento-tour"
     }
   }
 }

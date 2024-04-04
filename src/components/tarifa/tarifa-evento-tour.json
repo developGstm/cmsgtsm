@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_tarifa_tarifa_evento_tours",
+  "info": {
+    "displayName": "tarifas_evento_tour",
+    "icon": "music",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "fecha": {
+      "type": "date"
+    },
+    "precio": {
+      "type": "float"
+    }
+  }
+}
