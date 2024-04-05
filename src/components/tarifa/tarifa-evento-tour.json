@@ -15,6 +15,9 @@
     },
     "precio": {
       "type": "float"
+    },
+    "descripcion": {
+      "type": "text"
     }
   }
 }
