@@ -54,7 +54,7 @@ module.exports = createCoreController('api::servicios-destiny.servicios-destiny'
     try {
       const { param } = ctx.params
       const data = await strapi.entityService.findMany('api::servicios-destiny.servicios-destiny',{
-        fields: ['titulo','descripcion','ubiacion','url','categoria','publishedAt'],
+        fields: ['titulo','descripcion','ubiacion','url','categoria','publishedAt','politicas'],
         filters: {
           url: {
             $eq: param
