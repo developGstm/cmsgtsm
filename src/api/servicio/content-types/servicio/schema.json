@@ -93,6 +93,9 @@
       ],
       "required": true,
       "max": 1
+    },
+    "politicas": {
+      "type": "richtext"
     }
   }
 }
