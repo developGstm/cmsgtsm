@@ -96,6 +96,10 @@
     },
     "politicas": {
       "type": "richtext"
+    },
+    "url": {
+      "type": "uid",
+      "targetField": "titulo"
     }
   }
 }
