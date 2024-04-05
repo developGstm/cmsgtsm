@@ -8,5 +8,13 @@ module.exports = {
         auth:false
       },
     },
+    {
+      method: "GET",
+      path: "/filterServiceSearch/:param",
+      handler: "servicios-destiny.serviceFilterOne",
+      config: {
+        auth:false
+      },
+    },
   ],
 };
