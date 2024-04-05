@@ -40,14 +40,6 @@
         }
       }
     },
-    "descripcion": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "text"
-    },
     "moneda": {
       "type": "relation",
       "relation": "manyToMany",
@@ -117,6 +109,14 @@
         "relajado",
         "gastronomico"
       ]
+    },
+    "descripcion": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
     }
   }
 }
