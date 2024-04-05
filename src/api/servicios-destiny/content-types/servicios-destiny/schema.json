@@ -117,6 +117,15 @@
         }
       },
       "type": "richtext"
+    },
+    "politicas": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext",
+      "required": false
     }
   }
 }
