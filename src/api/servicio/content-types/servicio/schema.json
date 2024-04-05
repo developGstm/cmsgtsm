@@ -24,13 +24,6 @@
       "type": "customField",
       "customField": "plugin::location-field.location"
     },
-    "fecha_de_incio": {
-      "type": "date",
-      "required": true
-    },
-    "fecha_fin": {
-      "type": "date"
-    },
     "group_size": {
       "type": "biginteger",
       "required": true
@@ -67,14 +60,6 @@
         "images"
       ]
     },
-    "url_wetravel": {
-      "type": "string",
-      "required": true
-    },
-    "duracion": {
-      "type": "string",
-      "required": true
-    },
     "moneda": {
       "type": "relation",
       "relation": "manyToOne",
@@ -101,7 +86,10 @@
       "components": [
         "tipos-servicios.hotel",
         "tipos-servicios.tour",
-        "tipos-servicios.transporte"
+        "tipos-servicios.transporte",
+        "tipos-servicios.concierto",
+        "tipos-servicios.evento",
+        "tipos-servicios.viaje"
       ],
       "required": true,
       "max": 1
