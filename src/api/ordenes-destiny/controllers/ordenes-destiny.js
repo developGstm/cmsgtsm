@@ -2,7 +2,7 @@
 // @ts-ignore
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const moment = require('moment')
-
+const transporter = require('../../../helpers/mail')
 /**
  * ordenes-destiny controller
  */
@@ -45,6 +45,7 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
         },
 
       })
+
       return  {
         clientSecret: paymentIntent.client_secret,
       }
@@ -85,13 +86,6 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
               estatus_pago: paymentIntent.metadata.estatus_pago,
               fecha: moment(paymentIntent.metadata.fecha).format('YYYY-MM-DD')
             }
-          })
-          await strapi.plugins['email'].services.email.send({
-            to: paymentIntent.metadata.correo,
-            from: 'reservas@destinytravel.ai', //e.g. single sender verification in SendGrid
-            subject: 'The Strapi Email plugin worked successfully',
-            text: 'Hello world!',
-            html: 'Hello world!',
           })
           // Then define and call a method to handle the successful payment intent.
           // handlePaymentIntentSucceeded(paymentIntent);
