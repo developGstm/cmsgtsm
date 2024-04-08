@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ordenes_destinies",
+  "info": {
+    "singularName": "ordenes-destiny",
+    "pluralName": "ordenes-destinies",
+    "displayName": "ordenes-destiny",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    },
+    "telefono": {
+      "type": "string"
+    },
+    "fecha": {
+      "type": "date"
+    },
+    "paquete": {
+      "type": "json"
+    },
+    "plataforma_pago": {
+      "type": "string"
+    },
+    "id_pago": {
+      "type": "string"
+    },
+    "estatus_pago": {
+      "type": "string"
+    },
+    "usuario": {
+      "type": "string"
+    },
+    "correo": {
+      "type": "text"
+    }
+  }
+}
