@@ -2,7 +2,6 @@
 // @ts-ignore
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const moment = require('moment')
-const transporter = require('../../../helpers/mail')
 /**
  * ordenes-destiny controller
  */
