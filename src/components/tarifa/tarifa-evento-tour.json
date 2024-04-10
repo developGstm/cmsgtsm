@@ -1,7 +1,7 @@
 {
   "collectionName": "components_tarifa_tarifa_evento_tours",
   "info": {
-    "displayName": "tarifas_evento_tour",
+    "displayName": "tarifas_evento_concierto",
     "icon": "music",
     "description": ""
   },
@@ -18,6 +18,12 @@
     },
     "descripcion": {
       "type": "text"
+    },
+    "fecha_inicio": {
+      "type": "date"
+    },
+    "fecha_fin": {
+      "type": "date"
     }
   }
 }

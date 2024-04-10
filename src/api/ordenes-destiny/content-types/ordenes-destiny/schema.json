@@ -4,7 +4,7 @@
   "info": {
     "singularName": "ordenes-destiny",
     "pluralName": "ordenes-destinies",
-    "displayName": "ordenes-destiny",
+    "displayName": "Reservas-destiny",
     "description": ""
   },
   "options": {
@@ -38,6 +38,15 @@
     },
     "correo": {
       "type": "text"
+    },
+    "estatus": {
+      "type": "enumeration",
+      "enum": [
+        "proceso",
+        "realizada"
+      ],
+      "required": false,
+      "default": "proceso"
     }
   }
 }

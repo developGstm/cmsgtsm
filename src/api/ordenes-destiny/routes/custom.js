@@ -18,8 +18,16 @@ module.exports = {
     },
     {
       method: "POST",
-      path: "/webhook",
+      path: "/paymentRetrive/webhook",
       handler: "ordenes-destiny.webHook",
+      config: {
+        auth:false
+      },
+    },
+    {
+      method: "GET",
+      path: "/pruebaEmail",
+      handler: "ordenes-destiny.emailPrueba",
       config: {
         auth:false
       },

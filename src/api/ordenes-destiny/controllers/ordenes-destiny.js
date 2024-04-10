@@ -2,6 +2,7 @@
 // @ts-ignore
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const moment = require('moment')
+const nodemailer = require("nodemailer");
 /**
  * ordenes-destiny controller
  */
@@ -17,9 +18,32 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
         email: correo
       })
 
+      const paqueteFind = await strapi.entityService.findOne('api::servicios-destiny.servicios-destiny',paquete.id,{
+        fields: ['titulo','descripcion','ubiacion','url','categoria','minimo_apartado','publishedAt'],
+        populate: {
+          tipos_servicio: {
+            populate: '*'
+          },
+          portada: {
+            url: true
+          },
+          incluye: {
+            populate: '*'
+          },
+          moneda: {
+            titulo: true
+          },
+          unidad: {
+            titulo: true
+          }
+        }
+      })
+
+      const tarifaFind = paqueteFind.tipos_servicio[0]?.Tarifas?.find(item => item.id === paquete.tarifaId)
+
       const paymentIntent = await stripe.paymentIntents.create({
-        currency:"usd",
-        amount: 1999,
+        currency: paqueteFind?.moneda[0]?.titulo,
+        amount: tarifaFind.precio * 100,
         receipt_email: correo,
         automatic_payment_methods: {
           enabled: true
@@ -47,6 +71,10 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
 
       return  {
         clientSecret: paymentIntent.client_secret,
+        tarifa: {
+          total: tarifaFind.precio,
+          moneda: paqueteFind.moneda.titulo,
+        }
       }
     } catch (error) {
       return  { error_message: error}
@@ -70,6 +98,7 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
       switch (event.type) {
         case 'payment_intent.succeeded':
           const paymentIntent = event.data.object;
+          console.log(paymentIntent)
           const paquete = await strapi.service('api::servicios-destiny.servicios-destiny').findOne(paymentIntent.metadata.paquete)
           await strapi.service('api::ordenes-destiny.ordenes-destiny').create({
             data: {
@@ -102,6 +131,32 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
       return {received: true}
     } catch (error) {
       ctx.badRequest("Post report controller error", { moreDetails: error });
+    }
+  },
+  async emailPrueba(ctx, next){
+    try {
+      const transporter = nodemailer.createTransport({
+        host: "smtp.office365.com",
+        port: 587,
+        secure: false, // Use `true` for port 465, `false` for all other ports
+        auth: {
+          user: "notificaciones@destinytravel.ai",
+          pass: "N0t1D3st1n7",
+        },
+      });
+
+      const info = await transporter.sendMail({
+        from: '"Destiny Travel" <notificaciones@destinytravel.ai>', // sender address
+        to: "emmanuel.a.pacheco@gmail.com", // list of receivers
+        subject: "Hello ✔", // Subject line
+        text: "Hello world?", // plain text body
+        html: "<b>Hello world?</b>", // html body
+      });
+
+      console.log("Message sent: %s", info.messageId);
+
+    } catch (error) {
+      console.log(error)
     }
   }
 }));

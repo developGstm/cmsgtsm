@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_opciones_reserva_fechas",
+  "info": {
+    "displayName": "fechas",
+    "icon": "calendar"
+  },
+  "options": {},
+  "attributes": {
+    "fecha_inciio": {
+      "type": "date"
+    },
+    "fecha_fin": {
+      "type": "date"
+    },
+    "fecha_evento": {
+      "type": "date"
+    }
+  }
+}

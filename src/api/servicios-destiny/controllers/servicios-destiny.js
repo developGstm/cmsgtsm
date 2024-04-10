@@ -11,7 +11,7 @@ module.exports = createCoreController('api::servicios-destiny.servicios-destiny'
   async serviceFilter(ctx, next) {
     try {
       const data = await strapi.entityService.findMany('api::servicios-destiny.servicios-destiny',{
-        fields: ['titulo','descripcion','ubiacion','url','categoria','publishedAt'],
+        fields: ['titulo','descripcion','ubiacion','url','minimo_apartado','categoria','publishedAt'],
         filters: {
           $not:{
             publishedAt: null
@@ -43,6 +43,7 @@ module.exports = createCoreController('api::servicios-destiny.servicios-destiny'
           return item
         }
       })
+      console.log(newData)
       const contentType = strapi.contentType("api::servicios-destiny.servicios-destiny");
       const sanitizedEntity = await sanitize.contentAPI.output(newData,contentType);
       return { data: sanitizedEntity };
@@ -54,7 +55,7 @@ module.exports = createCoreController('api::servicios-destiny.servicios-destiny'
     try {
       const { param } = ctx.params
       const data = await strapi.entityService.findMany('api::servicios-destiny.servicios-destiny',{
-        fields: ['titulo','descripcion','ubiacion','url','categoria','publishedAt','politicas'],
+        fields: ['titulo','descripcion','ubiacion','url','minimo_apartado','categoria','publishedAt','politicas'],
         filters: {
           url: {
             $eq: param

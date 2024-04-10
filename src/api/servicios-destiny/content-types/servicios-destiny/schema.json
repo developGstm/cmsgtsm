@@ -126,6 +126,15 @@
       },
       "type": "richtext",
       "required": false
+    },
+    "minimo_apartado": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "float",
+      "default": 200
     }
   }
 }

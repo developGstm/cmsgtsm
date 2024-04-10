@@ -76,6 +76,12 @@
     "telefono": {
       "type": "string",
       "required": true
+    },
+    "compania": {
+      "type": "string"
+    },
+    "info_user": {
+      "type": "json"
     }
   }
 }
