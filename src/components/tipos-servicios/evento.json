@@ -10,7 +10,7 @@
     "Tarifas": {
       "type": "component",
       "repeatable": true,
-      "component": "tarifa.tarifa-evento-tour"
+      "component": "tarifa.tarifas-custom"
     }
   }
 }

@@ -75,7 +75,8 @@
         "tipos-servicios.tour",
         "tipos-servicios.transporte",
         "tipos-servicios.viaje"
-      ]
+      ],
+      "max": 1
     },
     "incluye": {
       "type": "component",

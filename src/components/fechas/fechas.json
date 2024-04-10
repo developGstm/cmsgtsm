@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_fechas_fechas",
+  "info": {
+    "displayName": "fechas",
+    "icon": "calendar"
+  },
+  "options": {},
+  "attributes": {
+    "fecha_inicio": {
+      "type": "date",
+      "required": true
+    },
+    "fecha_fin": {
+      "type": "date",
+      "required": true
+    },
+    "fecha_evento": {
+      "type": "date",
+      "required": true
+    }
+  }
+}
