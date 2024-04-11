@@ -13,12 +13,6 @@
   "attributes": {
     "titulo": {
       "type": "string"
-    },
-    "tipos": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::servicio.servicio",
-      "mappedBy": "tipo_servicio"
     }
   }
 }
