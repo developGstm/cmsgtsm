@@ -70,7 +70,11 @@ module.exports = createCoreController('api::servicios-destiny.servicios-destiny'
         },
         populate: {
           tipos_servicio: {
-            populate: '*'
+            populate: {
+              Tarifas: {
+                populate: '*'
+              }
+            }
           },
           portada: {
             url: true
