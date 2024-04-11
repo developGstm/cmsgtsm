@@ -28,16 +28,6 @@
       "type": "biginteger",
       "required": true
     },
-    "tipo_servicio": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::tipo-servicio.tipo-servicio",
-      "inversedBy": "tipos"
-    },
-    "precio": {
-      "type": "float",
-      "required": true
-    },
     "unidad": {
       "type": "relation",
       "relation": "manyToOne",
@@ -72,11 +62,6 @@
       "component": "preguntas-frecuentes.pregunta"
     },
     "incluido": {
-      "type": "component",
-      "repeatable": true,
-      "component": "items.item-incluido"
-    },
-    "no_incluido": {
       "type": "component",
       "repeatable": true,
       "component": "items.item-incluido"
