@@ -64,7 +64,7 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
           tarifa: paquete.tarifa,
           estatus_pago: paquete.estatus_pago,
           plataforma_pago: paquete.plataforma_pago,
-          fecha: fecha
+          fecha: fecha,
         },
 
       })
@@ -72,12 +72,34 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
       return  {
         clientSecret: paymentIntent.client_secret,
         tarifa: {
-          total: tarifaFind.precio,
-          moneda: paqueteFind.moneda.titulo,
+          total: tarifaFind?.precio,
+          despliegue_cargos: [],
+          moneda: paqueteFind?.moneda?.titulo,
         }
       }
     } catch (error) {
-      return  { error_message: error}
+      ctx.badRequest("Post report controller error", { moreDetails: error });
+    }
+  },async updateIntentPayment(ctx, next) {
+    const { clientSecret, paquete } = ctx.request.body;
+    console.log(clientSecret)
+    try {
+      const updatePayment = await stripe.paymentIntents.update(clientSecret,
+        {
+          metadata: {
+            prueba: 'prueba',
+          },
+        }
+      );
+      console.log(updatePayment,'updatePayment')
+      return  {
+        tarifa: {
+          total: 200,
+          despliegue_cargos: [],
+        }
+      }
+    } catch (error) {
+      ctx.badRequest("Post report controller error", { moreDetails: error });
     }
   },
   async paymentRetrive(ctx, next) {

@@ -9,6 +9,14 @@ module.exports = {
       },
     },
     {
+      method: "POST",
+      path: "/paymentIntentUpdate",
+      handler: "ordenes-destiny.updateIntentPayment",
+      config: {
+        auth:false
+      },
+    },
+    {
       method: "GET",
       path: "/paymentRetrive/:idsecret",
       handler: "ordenes-destiny.paymentRetrive",
