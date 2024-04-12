@@ -44,7 +44,6 @@ module.exports = createCoreController('api::servicio.servicio', ({strapi}) => ({
             }
           }
         })
-        
         const { type } = ctx.params
         const newData = data.filter(item => {
           const stringServicio = JSON.stringify(item.Tipo_Servicio);
@@ -53,7 +52,6 @@ module.exports = createCoreController('api::servicio.servicio', ({strapi}) => ({
           }
         })
 
-        console.log(newData)
         const contentType = strapi.contentType("api::servicio.servicio");
         const sanitizedEntity = await sanitize.contentAPI.output(newData,contentType);
         return { data: sanitizedEntity };

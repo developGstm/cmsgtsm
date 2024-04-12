@@ -13,6 +13,7 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
   async paymentIntent(ctx) {
     try {
       const { nombre, apellido ,correo, telefono, paquete, fecha } = ctx.request.body;
+      let financiamiento = null
       const createCustomer = await stripe.customers.create({
         name: `${nombre} ${apellido}`,
         email: correo
@@ -40,6 +41,51 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
       })
 
       const tarifaFind = paqueteFind.tipos_servicio[0]?.Tarifas?.find(item => item.id === paquete.tarifaId)
+      let porcentajeFinanciamiento = tarifaFind.precio*(1.8/100)
+      let totalPaquete = (tarifaFind.precio + porcentajeFinanciamiento) - paqueteFind.minimo_apartado
+
+      if (moment(fecha).diff(moment(), 'months') > 3) {
+        if (moment(fecha).diff(moment(), 'months') > 12) {
+          financiamiento = [
+           {
+            titulo:'3 meses',
+            npagos:6,
+            cantidadPago: totalPaquete / 6
+           },
+           {
+            titulo:'6 meses',
+            npagos:12,
+            cantidadPago: totalPaquete / 12
+           },
+           {
+            titulo:'12 meses',
+            npagos:24,
+            cantidadPago: totalPaquete / 24
+           }
+          ]
+         } else if (moment(fecha).diff(moment(), 'months') > 6) {
+          financiamiento = [
+           {
+            titulo:'3 meses',
+             npagos:6,
+             cantidadPago: totalPaquete / 6
+           },
+           {
+            titulo:'6 meses',
+            npagos:12,
+            cantidadPago: totalPaquete / 12
+           }
+          ]
+        } else if (moment(fecha).diff(moment(), 'months') > 3) {
+          financiamiento = [
+           {
+            titulo:'3 meses',
+            npagos:6,
+            cantidadPago: totalPaquete / 6
+           }
+          ]
+         }
+      }
 
       const paymentIntent = await stripe.paymentIntents.create({
         currency: paqueteFind?.moneda[0]?.titulo,
@@ -71,31 +117,61 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
 
       return  {
         clientSecret: paymentIntent.client_secret,
+        idPaymentIntent: paymentIntent.id,
         tarifa: {
           total: tarifaFind?.precio,
-          despliegue_cargos: [],
-          moneda: paqueteFind?.moneda?.titulo,
+          despliegue_cargos: {
+            porcentajeFinanciamiento,
+            totalPaquete
+          },
+          moneda: paqueteFind?.moneda[0]?.titulo,
+          financiamiento
         }
       }
     } catch (error) {
-      ctx.badRequest("Post report controller error", { moreDetails: error });
+
     }
   },async updateIntentPayment(ctx, next) {
-    const { clientSecret, paquete } = ctx.request.body;
-    console.log(clientSecret)
     try {
-      const updatePayment = await stripe.paymentIntents.update(clientSecret,
-        {
-          metadata: {
-            prueba: 'prueba',
+      const { idPaymentIntent, paquete } = ctx.request.body;
+
+      const paqueteFind = await strapi.entityService.findOne('api::servicios-destiny.servicios-destiny',paquete.id,{
+        fields: ['titulo','descripcion','ubiacion','url','categoria','minimo_apartado','publishedAt'],
+        populate: {
+          tipos_servicio: {
+            populate: '*'
           },
+          portada: {
+            url: true
+          },
+          incluye: {
+            populate: '*'
+          },
+          moneda: {
+            titulo: true
+          },
+          unidad: {
+            titulo: true
+          }
+        }
+      })
+      const tarifaFind = paqueteFind.tipos_servicio[0]?.Tarifas?.find(item => item.id === paquete.tarifaId)
+      if (paquete?.estatus_pago === 'financiamiento') {
+
+      }
+      const updatePayment = await stripe.paymentIntents.update(idPaymentIntent,
+        {
+          amount: paquete.estatus_pago === 'financiamiento' ? paqueteFind?.minimo_apartado * 100 : tarifaFind.precio * 100,
+          metadata: {
+            estatus_pago: paquete.estatus_pago,
+          }
         }
       );
-      console.log(updatePayment,'updatePayment')
       return  {
         tarifa: {
-          total: 200,
+          total: paquete.estatus_pago === 'financiamiento' ? paqueteFind?.minimo_apartado : tarifaFind.precio,
           despliegue_cargos: [],
+          moneda: paqueteFind?.moneda[0]?.titulo,
         }
       }
     } catch (error) {

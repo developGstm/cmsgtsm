@@ -47,7 +47,6 @@ module.exports = createCoreController('api::servicios-destiny.servicios-destiny'
           return item
         }
       })
-      console.log(newData)
       const contentType = strapi.contentType("api::servicios-destiny.servicios-destiny");
       const sanitizedEntity = await sanitize.contentAPI.output(newData,contentType);
       return { data: sanitizedEntity };
