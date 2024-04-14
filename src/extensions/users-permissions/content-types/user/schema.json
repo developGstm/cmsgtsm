@@ -69,10 +69,6 @@
       "type": "string",
       "required": true
     },
-    "nombre_agencia": {
-      "type": "string",
-      "required": true
-    },
     "telefono": {
       "type": "string",
       "required": true
