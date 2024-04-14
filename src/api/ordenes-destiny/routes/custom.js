@@ -34,7 +34,7 @@ module.exports = {
     },
     {
       method: "GET",
-      path: "/pruebaEmail",
+      path: "/pruebaEmail/:email",
       handler: "ordenes-destiny.emailPrueba",
       config: {
         auth:false

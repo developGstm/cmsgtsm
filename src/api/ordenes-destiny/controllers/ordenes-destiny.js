@@ -2,7 +2,8 @@
 // @ts-ignore
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const moment = require('moment')
-const nodemailer = require("nodemailer");
+const Resend = require('resend').Resend
+
 /**
  * ordenes-destiny controller
  */
@@ -41,7 +42,7 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
       })
 
       const tarifaFind = paqueteFind.tipos_servicio[0]?.Tarifas?.find(item => item.id === paquete.tarifaId)
-      let porcentajeFinanciamiento = tarifaFind.precio*(1.8/100)
+      let porcentajeFinanciamiento = tarifaFind.precio*(1.5/100)
       let totalPaquete = (tarifaFind.precio + porcentajeFinanciamiento) - paqueteFind.minimo_apartado
 
       if (moment(fecha).diff(moment(), 'months') > 3) {
@@ -49,40 +50,40 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
           financiamiento = [
            {
             titulo:'3 meses',
+            npagos:3,
+            cantidadPago: totalPaquete / 3
+           },
+           {
+            titulo:'6 meses',
             npagos:6,
             cantidadPago: totalPaquete / 6
            },
            {
-            titulo:'6 meses',
+            titulo:'12 meses',
             npagos:12,
             cantidadPago: totalPaquete / 12
-           },
-           {
-            titulo:'12 meses',
-            npagos:24,
-            cantidadPago: totalPaquete / 24
            }
           ]
          } else if (moment(fecha).diff(moment(), 'months') > 6) {
           financiamiento = [
-           {
-            titulo:'3 meses',
-             npagos:6,
-             cantidadPago: totalPaquete / 6
-           },
-           {
-            titulo:'6 meses',
-            npagos:12,
-            cantidadPago: totalPaquete / 12
-           }
+            {
+              titulo:'3 meses',
+              npagos:3,
+              cantidadPago: totalPaquete / 3
+            },
+            {
+              titulo:'6 meses',
+              npagos:6,
+              cantidadPago: totalPaquete / 6
+            }
           ]
         } else if (moment(fecha).diff(moment(), 'months') > 3) {
           financiamiento = [
-           {
-            titulo:'3 meses',
-            npagos:6,
-            cantidadPago: totalPaquete / 6
-           }
+            {
+              titulo:'3 meses',
+              npagos:3,
+              cantidadPago: totalPaquete / 3
+            },
           ]
          }
       }
@@ -233,26 +234,13 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
   },
   async emailPrueba(ctx, next){
     try {
-      const transporter = nodemailer.createTransport({
-        host: "smtp.office365.com",
-        port: 587,
-        secure: false, // Use `true` for port 465, `false` for all other ports
-        auth: {
-          user: "notificaciones@destinytravel.ai",
-          pass: "N0t1D3st1n7",
-        },
+      const { email } = ctx.params
+      const resend = new Resend('re_3hrvSVqW_4d9yTAy3zMK8BgkNq71Ho931')
+      await resend.contacts.create({
+        email: email,
+        audienceId: '8d4147a1-a1b1-4bcd-aa69-d9fb8edc1a2c',
       });
-
-      const info = await transporter.sendMail({
-        from: '"Destiny Travel" <notificaciones@destinytravel.ai>', // sender address
-        to: "emmanuel.a.pacheco@gmail.com", // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Hello world?", // plain text body
-        html: "<b>Hello world?</b>", // html body
-      });
-
-      console.log("Message sent: %s", info.messageId);
-
+      return {send: true}
     } catch (error) {
       console.log(error)
     }
