@@ -78,6 +78,9 @@
     },
     "info_user": {
       "type": "json"
+    },
+    "apellido": {
+      "type": "string"
     }
   }
 }

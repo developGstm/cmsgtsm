@@ -26,7 +26,7 @@ module.exports = {
     },
     {
       method: "POST",
-      path: "/paymentRetrive/webhook",
+      path: "/webhook",
       handler: "ordenes-destiny.webHook",
       config: {
         auth:false
