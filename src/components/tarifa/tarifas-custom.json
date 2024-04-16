@@ -2,7 +2,8 @@
   "collectionName": "components_tarifa_tarifas_customs",
   "info": {
     "displayName": "Tarifas_custom",
-    "icon": "calendar"
+    "icon": "calendar",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -19,15 +20,15 @@
       "required": true
     },
     "imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     },
     "Fechas": {
       "type": "component",
