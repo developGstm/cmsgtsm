@@ -2,7 +2,8 @@
   "collectionName": "components_fechas_fechas",
   "info": {
     "displayName": "fechas",
-    "icon": "calendar"
+    "icon": "calendar",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -16,7 +17,7 @@
     },
     "fecha_evento": {
       "type": "date",
-      "required": true
+      "required": false
     }
   }
 }

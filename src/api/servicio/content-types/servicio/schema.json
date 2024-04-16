@@ -24,10 +24,6 @@
       "type": "customField",
       "customField": "plugin::location-field.location"
     },
-    "group_size": {
-      "type": "biginteger",
-      "required": true
-    },
     "unidad": {
       "type": "relation",
       "relation": "manyToOne",
