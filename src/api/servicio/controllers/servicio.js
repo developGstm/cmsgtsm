@@ -10,7 +10,7 @@ module.exports = createCoreController('api::servicio.servicio', ({strapi}) => ({
     async serviceFilter(ctx, next) {
       try {
         const data = await strapi.entityService.findMany('api::servicio.servicio',{
-          fields: ['titulo','descripcion','locacion','group_size','url','politicas','publishedAt'],
+          fields: ['titulo','descripcion','locacion','url','politicas','publishedAt'],
           filters: {
             $not:{
               publishedAt: null
