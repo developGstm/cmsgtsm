@@ -58,5 +58,53 @@ module.exports = createCoreController('api::servicio.servicio', ({strapi}) => ({
       } catch (error) {
           ctx.badRequest("Post report controller error", { moreDetails: error });
       }
+    },
+    async serviceFilterOne(ctx, next) {
+      try {
+        const { param } = ctx.params
+        const data = await strapi.entityService.findMany('api::servicio.servicio',{
+          fields: ['titulo','descripcion','locacion','url','politicas','publishedAt'],
+          filters: {
+            url: {
+              $eq: param
+            },
+            publishedAt: {
+              $not: null
+            }
+          },
+          populate: {
+            Tipo_Servicio: {
+              populate: {
+                Tarifas: {
+                  populate: '*'
+                }
+              }
+            },
+            portada: {
+              url: true
+            },
+            galeria: {
+              populate: '*'
+            },
+            incluido: {
+              populate: '*'
+            },
+            preguntas_frecuentes: {
+              populate: '*'
+            },
+            moneda: {
+              titulo: true
+            },
+            unidad: {
+              titulo: true
+            }
+          }
+        })
+        const contentType = strapi.contentType("api::servicio.servicio");
+        const sanitizedEntity = await sanitize.contentAPI.output(data,contentType);
+        return { data: sanitizedEntity };
+      } catch (error) {
+        ctx.badRequest("Post report controller error", { moreDetails: error });
+      }
     }
 }));
