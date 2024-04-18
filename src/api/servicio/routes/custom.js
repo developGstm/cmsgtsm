@@ -8,5 +8,13 @@ module.exports = {
           auth:false
         },
       },
+      {
+        method: "GET",
+        path: "/filterServiceGlobalSearch/:param",
+        handler: "servicio.serviceFilterOne",
+        config: {
+          auth:false
+        },
+      },
     ]
  }
