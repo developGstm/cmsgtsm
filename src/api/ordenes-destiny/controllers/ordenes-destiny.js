@@ -11,6 +11,25 @@ const Resend = require('resend').Resend
 const { createCoreController } = require('@strapi/strapi').factories;
 
 module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ strapi }) => ({
+  async pruebaPago(ctx) {
+    const paymentIntent = await stripe.paymentIntents.create({
+      currency: 'mxn',
+      amount: 30000,
+      receipt_email: 'emmanuel.a.pacheco@gmail.com',
+      automatic_payment_methods: {
+        enabled: true
+      },
+      payment_method_options: {
+        card: {
+          installments: {
+            enabled: true,
+          },
+        },
+      },
+    })
+    console.log(paymentIntent)
+    return paymentIntent
+  },
   async paymentIntent(ctx) {
     try {
       const { nombre, apellido ,correo, telefono, paquete} = ctx.request.body;
@@ -43,8 +62,7 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
 
       const tarifaFind = paqueteFind.tipos_servicio[0]?.Tarifas?.find(item => item.id === paquete.tarifaId)
       let porcentajeFinanciamiento = tarifaFind.precio*(1.5/100)
-      let comicionTarjeta = tarifaFind.precio*(3.6/100)
-      let total = (tarifaFind.precio + comicionTarjeta)
+      let total = (tarifaFind.precio)
       let restantePaqueteFinanciado = (total + porcentajeFinanciamiento) - paqueteFind.minimo_apartado
 
 
@@ -132,22 +150,22 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
 
       return  {
         clientSecret: paymentIntent.client_secret,
+        available_plans: paymentIntent?.payment_method_options?.card?.installments?.available_plans,
         idPaymentIntent: paymentIntent.id,
         tarifa: {
           total: tarifaFind?.precio,
           despliegue_cargos: {
             porcentajeFinanciamiento,
             restantePaqueteFinanciado: restantePaqueteFinanciado,
-            comicionTarjeta,
             total_financiado: total + porcentajeFinanciamiento,
-            total:total,
+            total:tarifaFind?.precio,
           },
           moneda: paqueteFind?.moneda[0]?.titulo,
           financiamiento
         }
       }
     } catch (error) {
-
+      ctx.badRequest("Post report controller error", { moreDetails: error });
     }
   },async updateIntentPayment(ctx, next) {
     try {
@@ -175,8 +193,7 @@ module.exports = createCoreController('api::ordenes-destiny.ordenes-destiny',({ 
       })
       const tarifaFind = paqueteFind.tipos_servicio[0]?.Tarifas?.find(item => item.id === paquete.tarifaId)
       let porcentajeFinanciamiento = tarifaFind.precio*(1.5/100)
-      let comicionTarjeta = tarifaFind.precio*(3.6/100)
-      let total = (tarifaFind.precio + comicionTarjeta)
+      let total = (tarifaFind.precio)
       let restantePaqueteFinanciado = (total + porcentajeFinanciamiento) - paqueteFind.minimo_apartado
 
       await stripe.paymentIntents.update(idPaymentIntent,
