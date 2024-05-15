@@ -10,17 +10,7 @@
     "Tarifas": {
       "type": "component",
       "repeatable": true,
-      "component": "tarifa.tarifas"
-    },
-    "duracion": {
-      "type": "decimal"
-    },
-    "unidad_duracion": {
-      "type": "enumeration",
-      "enum": [
-        "dias",
-        "horas"
-      ]
+      "component": "tarifa.tarifas-hotel"
     }
   }
 }

@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_tarifa_tarifas_hotels",
+  "info": {
+    "displayName": "tarifas_hotel",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "text"
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "adultos_max": {
+      "type": "integer"
+    },
+    "menores_max": {
+      "type": "integer"
+    },
+    "ocupacion_max": {
+      "type": "integer"
+    },
+    "tarifas": {
+      "type": "component",
+      "repeatable": true,
+      "component": "tarifa.tarifas-hotel-range"
+    }
+  }
+}

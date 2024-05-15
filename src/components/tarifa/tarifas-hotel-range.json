@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_tarifa_tarifas_hotel_ranges",
+  "info": {
+    "displayName": "tarifas_hotel_range"
+  },
+  "options": {},
+  "attributes": {
+    "fecha_inicio": {
+      "type": "date"
+    },
+    "precio": {
+      "type": "float"
+    },
+    "fecha_fin": {
+      "type": "date"
+    }
+  }
+}
